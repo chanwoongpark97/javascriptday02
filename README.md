@@ -193,17 +193,19 @@ let  f = [ ‘apple’,  ‘banana’, ‘orange’ ]
 
    생성자함수가 객체를 만들기 위해서는 “new”를 반드시 집어넣어야함
 
-### 실전 코딩테스트 문제
+### 13. 실전 코딩테스트 문제
+[문자열 내 마음대로 저장하기](https://school.programmers.co.kr/learn/courses/30/lessons/12915)
 금일 문제는 배열 안에 영어 단어들이 있는데, 각 단어들의 n번째 알파벳 철자를 지정했을때 그 기준으로 사전 순서대로 정렬을 하는 것이였다. 그리고 나서 만약 같은 알파벳 철자가 동일 하면, 원래 사전 순서대로 정렬을 하라는 문제였다.
 나는 그래서 오늘 배웠던 것 중에서 정렬을 하는 메서드인 sort 함수를 찾아보았다.
-
+```javascript
 function compare(a, b) {
   if (a > b) return 1; // 첫 번째 값이 두 번째 값보다 큰 경우
   if (a == b) return 0; // 두 값이 같은 경우
   if (a < b) return -1; //  첫 번째 값이 두 번째 값보다 작은 경우
 }
+```
 일반적으로 두 단어의 비교를 하게 된다면 바로 if의 세 가지를 전부 실행하면 정렬이 된다.
-
+```javascript
 function compareNumeric(a, b) {
   if (a > b) return 1;
   if (a == b) return 0;
@@ -215,27 +217,30 @@ let arr = [ 1, 2, 15 ];
 arr.sort(compareNumeric);
 
 alert(arr);  // 1, 2, 15
+```
 이게 바로 sort의 함수를 사용하면 arr 배열이 변수를 compareNumeric로 선언한 함수를 통해서 작은숫자부터 큰숫자까지 정렬된 것을 볼 수 있었다.
 그래서 나는 sort 함수를 이용해서 다음과 같이 풀게 되었다.
 
 strings이 단어고, n이 그 단어의 n번째 철자라고 선언을 한다. 그러면 두 단어 a와 b가 있을텐데 각 단어의 n번째 철자를 지정을 해서 비교를 해서 정렬 하면 되었다. sort 함수를 사용하면 다음과 같이 정렬을 하면 된다. 각 단어의 n번째 철자를 쓰는 것이기에 a[n]과 b[n]을 비교하면 되었다.
-
+```javascript
 // 인접한 두 리스트의 n번째 글자를 비교해서 정렬
 answer = strings.sort((a, b) => {
 	if(a[n] > b[n]) return 1; 
     if(a[n] < b[n]) return -1;
     if(a[n] = b[n]) return 0;
     }
+```
 이러면 n번째 철자를 비교해서 정렬을 완료 하였다. 다만 두 단어의 철자가 같다면 원래 대로 기존처럼 정렬 해야 한다는 조건이 남아 있었다 이 부분은 강의 자료에 있던거 그대로 쓰면 되었다.
-
+```javascript
 		// 만약 n번째 글자가 같으면 사전순으로 정렬
 		if(a[n] == b[n]){ 
             if(a > b) return 1;
             if(a < b) return -1;
             if(a = b) return 0;
         }
+```
 만약 n번째 철자가 동일 하면 강의 자료에 있던 if문 세 가지 모두 그대로 쓰면 되었다.
-
+```javascript
 function solution(strings, n) {
     var answer = []
     // 인접한 두 리스트의 n번째 글자를 비교해서 정렬
@@ -251,4 +256,5 @@ function solution(strings, n) {
     });
     return answer;
 }
+```
 그렇게 해서 나온 내 최종 해답은 이거였다. 팀원들과 의논하고 궁리해보니까 겨우 풀 수 있었다. 강의자료를 잘 찾아보면 해결 할 수 있었다.
